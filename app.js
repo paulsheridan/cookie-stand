@@ -24,8 +24,7 @@ var pikePlace = {
     for (i = 0; i < hours.length; i++){
       cookiesThisHour = this.customerRand(this.minCust, this.maxCust) * this.avgCookies;
       this.hourlyCookies.push(cookiesThisHour);
-      dailyCookies =+ cookiesThisHour;
-      console.log(this.hourlyCookies);
+      this.dailyCookies += cookiesThisHour;
     }
   },
 
@@ -39,6 +38,9 @@ var pikePlace = {
       liElem.textContent = hours[i] + " - " + Math.round(this.hourlyCookies[i]);
       ulElem.appendChild(liElem);
     }
+    var totElem = document.createElement("li");
+    totElem.textContent = "Total - " + Math.round(this.dailyCookies);
+    ulElem.appendChild(totElem);
     hoursElem.appendChild(ulElem);
   }
 }
@@ -58,8 +60,7 @@ var seaTac = {
     for (i = 0; i < hours.length; i++){
       cookiesThisHour = this.customerRand(this.minCust, this.maxCust) * this.avgCookies;
       this.hourlyCookies.push(cookiesThisHour);
-      dailyCookies =+ cookiesThisHour;
-      console.log(this.hourlyCookies);
+      this.dailyCookies += cookiesThisHour;
     }
   },
 
@@ -73,6 +74,9 @@ var seaTac = {
       liElem.textContent = hours[i] + " - " + Math.round(this.hourlyCookies[i]);
       ulElem.appendChild(liElem);
     }
+    var totElem = document.createElement("li");
+    totElem.textContent = "Total - " + Math.round(this.dailyCookies);
+    ulElem.appendChild(totElem);
     hoursElem.appendChild(ulElem);
   }
 }
@@ -92,8 +96,7 @@ var southCenter = {
     for (i = 0; i < hours.length; i++){
       cookiesThisHour = this.customerRand(this.minCust, this.maxCust) * this.avgCookies;
       this.hourlyCookies.push(cookiesThisHour);
-      dailyCookies =+ cookiesThisHour;
-      console.log(this.hourlyCookies);
+      this.dailyCookies += cookiesThisHour;
     }
   },
 
@@ -107,6 +110,9 @@ var southCenter = {
       liElem.textContent = hours[i] + " - " + Math.round(this.hourlyCookies[i]);
       ulElem.appendChild(liElem);
     }
+    var totElem = document.createElement("li");
+    totElem.textContent = "Total - " + Math.round(this.dailyCookies);
+    ulElem.appendChild(totElem);
     hoursElem.appendChild(ulElem);
   }
 }
@@ -126,8 +132,7 @@ var bellevue = {
     for (i = 0; i < hours.length; i++){
       cookiesThisHour = this.customerRand(this.minCust, this.maxCust) * this.avgCookies;
       this.hourlyCookies.push(cookiesThisHour);
-      dailyCookies =+ cookiesThisHour;
-      console.log(this.hourlyCookies);
+      this.dailyCookies += cookiesThisHour;
     }
   },
 
@@ -141,6 +146,9 @@ var bellevue = {
       liElem.textContent = hours[i] + " - " + Math.round(this.hourlyCookies[i]);
       ulElem.appendChild(liElem);
     }
+    var totElem = document.createElement("li");
+    totElem.textContent = "Total - " + Math.round(this.dailyCookies);
+    ulElem.appendChild(totElem);
     hoursElem.appendChild(ulElem);
   }
 }
@@ -160,8 +168,7 @@ var alki = {
     for (i = 0; i < hours.length; i++){
       cookiesThisHour = this.customerRand(this.minCust, this.maxCust) * this.avgCookies;
       this.hourlyCookies.push(cookiesThisHour);
-      dailyCookies =+ cookiesThisHour;
-      console.log(this.hourlyCookies);
+      this.dailyCookies += cookiesThisHour;
     }
   },
 
@@ -175,6 +182,9 @@ var alki = {
       liElem.textContent = hours[i] + " - " + Math.round(this.hourlyCookies[i]);
       ulElem.appendChild(liElem);
     }
+    var totElem = document.createElement("li");
+    totElem.textContent = "Total - " + Math.round(this.dailyCookies);
+    ulElem.appendChild(totElem);
     hoursElem.appendChild(ulElem);
   }
 }
