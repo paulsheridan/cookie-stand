@@ -32,6 +32,7 @@ CookieStand.prototype.generateHourly = function(){
 }
 
 CookieStand.prototype.render = function(){
+  this.generateHourly();
   var hoursElem = document.getElementById("hours");
   var tblElem = document.createElement("table");
   var thElem = document.createElement("td");
@@ -69,23 +70,13 @@ function firstLine(){
     var thElem = document.createElement("th");
     thElem.textContent = hours[i];
     tblElem.appendChild(thElem);
-    hoursElem.appendChild(tblElem)
+    hoursElem.appendChild(tblElem);
   }
 }
 
 firstLine();
-
-pikePlace.generateHourly();
 pikePlace.render();
-
-seaTac.generateHourly();
 seaTac.render();
-
-southCenter.generateHourly();
 southCenter.render();
-
-bellevue.generateHourly();
 bellevue.render();
-
-alki.generateHourly();
 alki.render();
