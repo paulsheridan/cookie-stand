@@ -18,11 +18,11 @@ function CookieStand (locName, minCust, maxCust, avgCookies){
   this.dailyCookies = 0;
 }
 
-CookieStand.prototype.customerRand(min, max){
+CookieStand.prototype.customerRand = function(min, max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-CookieStand.prototype.generateHourly(){
+CookieStand.prototype.generateHourly = function(){
   for (i = 0; i < hours.length; i++){
     cookiesThisHour = this.customerRand(this.minCust, this.maxCust) * this.avgCookies;
     this.hourlyCookies.push(cookiesThisHour);
@@ -30,10 +30,10 @@ CookieStand.prototype.generateHourly(){
   }
 }
 
-CookieStand.prototype.render(){
+CookieStand.prototype.render = function(){
   var hoursElem = document.getElementById("hours");
   var ulElem = document.createElement("ul");
-  ulElem.appendChild(document.createTextNode(locName));
+  ulElem.appendChild(document.createTextNode(this.locName));
 
   for (i = 0; i < this.hourlyCookies.length; i++){
     var liElem = document.createElement("li");
