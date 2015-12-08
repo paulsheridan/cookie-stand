@@ -34,9 +34,10 @@ CookieStand.prototype.generateHourly = function(){
 CookieStand.prototype.render = function(){
   var hoursElem = document.getElementById("hours");
   var tblElem = document.createElement("table");
-  var thElem = document.createElement("th");
+  var thElem = document.createElement("td");
   thElem.textContent = this.locName;
   tblElem.appendChild(thElem);
+  thElem.className = "firstRow";
 
   var totElem = document.createElement("td");
   totElem.textContent = Math.round(this.dailyCookies);
@@ -62,6 +63,7 @@ function firstLine(){
   var thElem = document.createElement("th");
   thElem.textContent = "Locations";
   tblElem.appendChild(thElem);
+  thElem.className = "firstRow";
 
   for (i = 0; i < hours.length; i++){
     var thElem = document.createElement("th");
