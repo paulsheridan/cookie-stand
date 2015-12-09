@@ -58,8 +58,8 @@ CookieStand.prototype.render = function(){
 }
 
 function firstLine(){
-  var hoursElem = document.getElementById("hours");
-  var tblElem = document.createElement("table");
+  hoursElem = document.getElementById("hours");
+  tblElem = document.createElement("table");
   var thElem = document.createElement("th");
   thElem.textContent = "Locations";
   tblElem.appendChild(thElem);
@@ -72,11 +72,6 @@ function firstLine(){
     hoursElem.appendChild(tblElem);
   }
 }
-//
-// var loc;
-// var min;
-// var max;
-// var avg;
 
 document.getElementById("new_stand").addEventListener("submit", function(event){
   event.preventDefault();
@@ -87,16 +82,14 @@ document.getElementById("new_stand").addEventListener("submit", function(event){
 
   var needNew = true;
   for (var i = 0; i < locations.length; i++){
-    console.log(locations[i]);
-    if (loc.toLowerCase === locations[i]){
+    if (loc.toLowerCase() === locations[i]){
       needNew = false;
     }
   }
   if (needNew === true){
     addStand(loc, min, max, avg);
   } else {
-    console.log("IT FITS")
-    //modifyStand(loc, min, max, avg);
+    modifyStand(loc, min, max, avg);
   }
 });
 
@@ -105,9 +98,9 @@ function addStand(loc, min, max, avg){
   newLocation.render();
 }
 
-// function modifyStand(){
-//
-// }
+function modifyStand(){
+  console.log("This should be changed");
+}
 
 var newLocation;
 var pikePlace = new CookieStand ("Pike Place", 17, 88, 5.2);
