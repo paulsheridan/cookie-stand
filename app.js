@@ -1,5 +1,6 @@
 var hoursElem = document.getElementById("hours");
 var tblElem = document.createElement("table");
+var locations = [];
 var hours = [
   "Total",
   "10a",
@@ -35,6 +36,8 @@ CookieStand.prototype.generateHourly = function(){
 
 CookieStand.prototype.render = function(){
   this.generateHourly();
+  locations.push(this.locName.toLowerCase());
+  console.log(locations);
   var trElem = document.createElement("tr")
   var tdElem = document.createElement("td");
   tdElem.textContent = this.locName;
@@ -55,8 +58,8 @@ CookieStand.prototype.render = function(){
 }
 
 function firstLine(){
-  hoursElem = document.getElementById("hours");
-  tblElem = document.createElement("table");
+  var hoursElem = document.getElementById("hours");
+  var tblElem = document.createElement("table");
   var thElem = document.createElement("th");
   thElem.textContent = "Locations";
   tblElem.appendChild(thElem);
@@ -69,7 +72,44 @@ function firstLine(){
     hoursElem.appendChild(tblElem);
   }
 }
+//
+// var loc;
+// var min;
+// var max;
+// var avg;
 
+document.getElementById("new_stand").addEventListener("submit", function(event){
+  event.preventDefault();
+  var loc = event.target.loc.value;
+  var min = parseInt(event.target.min.value);
+  var max = parseInt(event.target.max.value);
+  var avg = parseInt(event.target.avg.value);
+
+  var needNew = true;
+  for (var i = 0; i < locations.length; i++){
+    console.log(locations[i]);
+    if (loc.toLowerCase === locations[i]){
+      needNew = false;
+    }
+  }
+  if (needNew === true){
+    addStand(loc, min, max, avg);
+  } else {
+    console.log("IT FITS")
+    //modifyStand(loc, min, max, avg);
+  }
+});
+
+function addStand(loc, min, max, avg){
+  newLocation = new CookieStand (loc, min, max, avg);
+  newLocation.render();
+}
+
+// function modifyStand(){
+//
+// }
+
+var newLocation;
 var pikePlace = new CookieStand ("Pike Place", 17, 88, 5.2);
 var seaTac = new CookieStand ("SeaTac Airport", 6, 44, 1.2);
 var southCenter = new CookieStand ("Southcenter Mall", 11, 38, 1.9);
