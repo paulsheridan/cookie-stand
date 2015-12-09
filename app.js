@@ -1,205 +1,84 @@
+var hoursElem = document.getElementById("hours");
+var tblElem = document.createElement("table");
 var hours = [
-  "10am",
-  "11am",
-  "12pm",
-  "1pm",
-  "2pm",
-  "3pm",
-  "4pm",
-  "5pm"
+  "Total",
+  "10a",
+  "11a",
+  "12p",
+  "1p",
+  "2p",
+  "3p",
+  "4p",
+  "5p"
 ];
 
-var pikePlace = {
-  minCust: 17,
-  maxCust: 88,
-  avgCookies: 5.2,
-  hourlyCookies: [],
-  dailyCookies: 0,
+function CookieStand (locName, minCust, maxCust, avgCookies){
+  this.locName = locName;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgCookies = avgCookies;
+  this.hourlyCookies = [];
+  this.dailyCookies = 0;
+}
 
-  customerRand: function (min, max){
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  },
+CookieStand.prototype.customerRand = function(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-  generateHourly: function (){
-    for (i = 0; i < hours.length; i++){
-      cookiesThisHour = this.customerRand(this.minCust, this.maxCust) * this.avgCookies;
-      this.hourlyCookies.push(cookiesThisHour);
-      this.dailyCookies += cookiesThisHour;
-    }
-  },
-
-  render: function (){
-    var hoursElem = document.getElementById("hours");
-    var ulElem = document.createElement("ul");
-    ulElem.appendChild(document.createTextNode("Pike Place Market"));
-
-    for (i = 0; i < this.hourlyCookies.length; i++){
-      var liElem = document.createElement("li");
-      liElem.textContent = hours[i] + " - " + Math.round(this.hourlyCookies[i]);
-      ulElem.appendChild(liElem);
-    }
-    var totElem = document.createElement("li");
-    totElem.textContent = "Total - " + Math.round(this.dailyCookies);
-    ulElem.appendChild(totElem);
-    hoursElem.appendChild(ulElem);
+CookieStand.prototype.generateHourly = function(){
+  for (var i = 1; i < hours.length; i++){
+    var cookiesThisHour = this.customerRand(this.minCust, this.maxCust) * this.avgCookies;
+    this.hourlyCookies.push(cookiesThisHour);
+    this.dailyCookies += cookiesThisHour;
   }
 }
 
-var seaTac = {
-  minCust: 6,
-  maxCust: 44,
-  avgCookies: 1.2,
-  hourlyCookies: [],
-  dailyCookies: 0,
+CookieStand.prototype.render = function(){
+  this.generateHourly();
+  var trElem = document.createElement("tr")
+  var tdElem = document.createElement("td");
+  tdElem.textContent = this.locName;
+  trElem.appendChild(tdElem);
+  tblElem.appendChild(trElem);
+  tdElem.className = "firstColumn";
 
-  customerRand: function (min, max){
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  },
+  var totElem = document.createElement("td");
+  totElem.textContent = Math.round(this.dailyCookies);
+  trElem.appendChild(totElem);
+  hoursElem.appendChild(tblElem);
 
-  generateHourly: function (){
-    for (i = 0; i < hours.length; i++){
-      cookiesThisHour = this.customerRand(this.minCust, this.maxCust) * this.avgCookies;
-      this.hourlyCookies.push(cookiesThisHour);
-      this.dailyCookies += cookiesThisHour;
-    }
-  },
-
-  render: function (){
-    var hoursElem = document.getElementById("hours");
-    var ulElem = document.createElement("ul");
-    ulElem.appendChild(document.createTextNode("SeaTac Airport"));
-
-    for (i = 0; i < this.hourlyCookies.length; i++){
-      var liElem = document.createElement("li");
-      liElem.textContent = hours[i] + " - " + Math.round(this.hourlyCookies[i]);
-      ulElem.appendChild(liElem);
-    }
-    var totElem = document.createElement("li");
-    totElem.textContent = "Total - " + Math.round(this.dailyCookies);
-    ulElem.appendChild(totElem);
-    hoursElem.appendChild(ulElem);
+  for (var i = 0; i < this.hourlyCookies.length; i++){
+    var tdElem = document.createElement("td");
+    tdElem.textContent = Math.round(this.hourlyCookies[i]);
+    trElem.appendChild(tdElem);
   }
 }
 
-var southCenter = {
-  minCust: 17,
-  maxCust: 88,
-  avgCookies: 5.2,
-  hourlyCookies: [],
-  dailyCookies: 0,
+function firstLine(){
+  hoursElem = document.getElementById("hours");
+  tblElem = document.createElement("table");
+  var thElem = document.createElement("th");
+  thElem.textContent = "Locations";
+  tblElem.appendChild(thElem);
+  thElem.className = "firstColumn";
 
-  customerRand: function (min, max){
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  },
-
-  generateHourly: function (){
-    for (i = 0; i < hours.length; i++){
-      cookiesThisHour = this.customerRand(this.minCust, this.maxCust) * this.avgCookies;
-      this.hourlyCookies.push(cookiesThisHour);
-      this.dailyCookies += cookiesThisHour;
-    }
-  },
-
-  render: function (){
-    var hoursElem = document.getElementById("hours");
-    var ulElem = document.createElement("ul");
-    ulElem.appendChild(document.createTextNode("Southcenter Mall"));
-
-    for (i = 0; i < this.hourlyCookies.length; i++){
-      var liElem = document.createElement("li");
-      liElem.textContent = hours[i] + " - " + Math.round(this.hourlyCookies[i]);
-      ulElem.appendChild(liElem);
-    }
-    var totElem = document.createElement("li");
-    totElem.textContent = "Total - " + Math.round(this.dailyCookies);
-    ulElem.appendChild(totElem);
-    hoursElem.appendChild(ulElem);
+  for (var i = 0; i < hours.length; i++){
+    var thElem = document.createElement("th");
+    thElem.textContent = hours[i];
+    tblElem.appendChild(thElem);
+    hoursElem.appendChild(tblElem);
   }
 }
 
-var bellevue = {
-  minCust: 17,
-  maxCust: 88,
-  avgCookies: 5.2,
-  hourlyCookies: [],
-  dailyCookies: 0,
+var pikePlace = new CookieStand ("Pike Place", 17, 88, 5.2);
+var seaTac = new CookieStand ("SeaTac Airport", 6, 44, 1.2);
+var southCenter = new CookieStand ("Southcenter Mall", 11, 38, 1.9);
+var bellevue = new CookieStand ("Bellevue Mall", 20, 48, 3.3);
+var alki = new CookieStand ("Alki", 3, 24, 2.6);
 
-  customerRand: function (min, max){
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  },
-
-  generateHourly: function (){
-    for (i = 0; i < hours.length; i++){
-      cookiesThisHour = this.customerRand(this.minCust, this.maxCust) * this.avgCookies;
-      this.hourlyCookies.push(cookiesThisHour);
-      this.dailyCookies += cookiesThisHour;
-    }
-  },
-
-  render: function (){
-    var hoursElem = document.getElementById("hours");
-    var ulElem = document.createElement("ul");
-    ulElem.appendChild(document.createTextNode("Bellevue Square"));
-
-    for (i = 0; i < this.hourlyCookies.length; i++){
-      var liElem = document.createElement("li");
-      liElem.textContent = hours[i] + " - " + Math.round(this.hourlyCookies[i]);
-      ulElem.appendChild(liElem);
-    }
-    var totElem = document.createElement("li");
-    totElem.textContent = "Total - " + Math.round(this.dailyCookies);
-    ulElem.appendChild(totElem);
-    hoursElem.appendChild(ulElem);
-  }
-}
-
-var alki = {
-  minCust: 17,
-  maxCust: 88,
-  avgCookies: 5.2,
-  hourlyCookies: [],
-  dailyCookies: 0,
-
-  customerRand: function (min, max){
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  },
-
-  generateHourly: function (){
-    for (i = 0; i < hours.length; i++){
-      cookiesThisHour = this.customerRand(this.minCust, this.maxCust) * this.avgCookies;
-      this.hourlyCookies.push(cookiesThisHour);
-      this.dailyCookies += cookiesThisHour;
-    }
-  },
-
-  render: function (){
-    var hoursElem = document.getElementById("hours");
-    var ulElem = document.createElement("ul");
-    ulElem.appendChild(document.createTextNode("Alki"));
-
-    for (i = 0; i < this.hourlyCookies.length; i++){
-      var liElem = document.createElement("li");
-      liElem.textContent = hours[i] + " - " + Math.round(this.hourlyCookies[i]);
-      ulElem.appendChild(liElem);
-    }
-    var totElem = document.createElement("li");
-    totElem.textContent = "Total - " + Math.round(this.dailyCookies);
-    ulElem.appendChild(totElem);
-    hoursElem.appendChild(ulElem);
-  }
-}
-
-pikePlace.generateHourly();
+firstLine();
 pikePlace.render();
-
-seaTac.generateHourly();
 seaTac.render();
-
-southCenter.generateHourly();
 southCenter.render();
-
-bellevue.generateHourly();
 bellevue.render();
-
-alki.generateHourly();
 alki.render();
