@@ -7,14 +7,14 @@ table {
 td, th {
   border: 1px solid #999;
   overflow: hidden;
-  width: 50px;
+  width: 4em;
   height: 30px;
   text-align: left;}
 h2{
   font-family: 'Arial', Arial, sans-serif;
   color: #164238;}
 .firstColumn {
-  width: 130px}
+  width: 10em}
 .disc {
   font-family: 'Arial', Arial, sans-serif;
   color: #164238;

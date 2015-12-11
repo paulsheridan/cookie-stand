@@ -1,5 +1,6 @@
 var hoursElem = document.getElementById("hours");
 var tblElem = document.createElement("table");
+//var newLocation;
 var locations = [];
 var hours = [
   "Total",
@@ -78,7 +79,7 @@ document.getElementById("new_stand").addEventListener("submit", function(event){
   var loc = event.target.loc.value;
   var min = parseInt(event.target.min.value);
   var max = parseInt(event.target.max.value);
-  var avg = parseInt(event.target.avg.value);
+  var avg = parseFloat(event.target.avg.value);
 
   var needNew = true;
   for (var i = 0; i < locations.length; i++){
@@ -94,7 +95,7 @@ document.getElementById("new_stand").addEventListener("submit", function(event){
 });
 
 function addStand(loc, min, max, avg){
-  newLocation = new CookieStand (loc, min, max, avg);
+  var newLocation = new CookieStand (loc, min, max, avg);
   newLocation.render();
 }
 
@@ -102,7 +103,6 @@ function modifyStand(){
   console.log("This should be changed");
 }
 
-var newLocation;
 var pikePlace = new CookieStand ("Pike Place", 17, 88, 5.2);
 var seaTac = new CookieStand ("SeaTac Airport", 6, 44, 1.2);
 var southCenter = new CookieStand ("Southcenter Mall", 11, 38, 1.9);
