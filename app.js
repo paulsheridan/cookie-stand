@@ -44,7 +44,7 @@ CookieStand.prototype.render = function(){
   tdElem.textContent = this.locName;
   trElem.appendChild(tdElem);
   tblElem.appendChild(trElem);
-  tdElem.className = "firstColumn";
+  tdElem.className = "firstEntry";
 
   var totElem = document.createElement("td");
   totElem.textContent = Math.round(this.dailyCookies);
@@ -64,7 +64,7 @@ function firstLine(){
   var thElem = document.createElement("th");
   thElem.textContent = "Locations";
   tblElem.appendChild(thElem);
-  thElem.className = "firstColumn";
+  thElem.className = "firstEntry";
 
   for (var i = 0; i < hours.length; i++){
     var thElem = document.createElement("th");
