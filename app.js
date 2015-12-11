@@ -1,5 +1,7 @@
 var hoursElem = document.getElementById("hours");
 var tblElem = document.createElement("table");
+//var newLocation;
+var locations = [];
 var hours = [
   "Total",
   "10a",
@@ -35,6 +37,8 @@ CookieStand.prototype.generateHourly = function(){
 
 CookieStand.prototype.render = function(){
   this.generateHourly();
+  locations.push(this.locName.toLowerCase());
+  console.log(locations);
   var trElem = document.createElement("tr")
   var tdElem = document.createElement("td");
   tdElem.textContent = this.locName;
@@ -68,6 +72,35 @@ function firstLine(){
     tblElem.appendChild(thElem);
     hoursElem.appendChild(tblElem);
   }
+}
+
+document.getElementById("new_stand").addEventListener("submit", function(event){
+  event.preventDefault();
+  var loc = event.target.loc.value;
+  var min = parseInt(event.target.min.value);
+  var max = parseInt(event.target.max.value);
+  var avg = parseFloat(event.target.avg.value);
+
+  var needNew = true;
+  for (var i = 0; i < locations.length; i++){
+    if (loc.toLowerCase() === locations[i]){
+      needNew = false;
+    }
+  }
+  if (needNew === true){
+    addStand(loc, min, max, avg);
+  } else {
+    modifyStand(loc, min, max, avg);
+  }
+});
+
+function addStand(loc, min, max, avg){
+  var newLocation = new CookieStand (loc, min, max, avg);
+  newLocation.render();
+}
+
+function modifyStand(){
+  console.log("This should be changed");
 }
 
 var pikePlace = new CookieStand ("Pike Place", 17, 88, 5.2);
